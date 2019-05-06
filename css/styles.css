@@ -113,10 +113,11 @@ h1 {
     background-image: url('images/miss.png')
 }
 
-.msgEl {
+#msgEl {
     align: center;
     width: 474px;
     font-size: 48px;
     color: white;
     background-image: url('https://atcmemes.com/wp-content/uploads/2016/12/radarimage-681x380.jpg')
+    position: absolute bottom;
 }
