@@ -1,10 +1,10 @@
 //initialize game boards
 function init() {
 board1 =    [0, 0, 0, 0, 0, 0,
-             0, 0, 0, 0, 0, 0,
-             0, 0, 0, 0, 0, 0,
-             0, 0, 0, 0, 0, 0,
-             0, 0, 0, 0, 0, 0,
+             0, 0, 0, 0, 1, 0,
+             0, 0, 1, 0, 1, 0,
+             0, 0, 1, 0, 1, 0,
+             0, 0, 1, 0, 0, 0,
              0, 0, 0, 0, 0, 0];
 
 board2 =    [0, 0, 0, 0, 0, 0,
@@ -16,7 +16,8 @@ board2 =    [0, 0, 0, 0, 0, 0,
 
     winner = null;
     turn = 1;
-    render();
+    //render();
+    console.log('up and running');
 }
 //create ship class
 class Ship {
@@ -29,13 +30,13 @@ class Ship {
     }
 }
 //create ships
-    var ship1 = new Ship("Battleship", 4, ["", "", "", ""], false, 0);
-    var ship2 = new Ship("Submarine", 3, ["", "", ""], false, 0);
-    var ship3 = new Ship("Destroyer", 2, ["", ""], false, 9);
+    var ship1 = new Ship("Battleship", 4, [], false, 0);
+    var ship2 = new Ship("Submarine", 3, [], false, 0);
+    var ship3 = new Ship("Destroyer", 2, [], false, 0);
 
-    var ship4 = new Ship("Battleship", 4, ["", "", "", ""], false, 0);
-    var ship5 = new Ship("Submarine", 3, ["", "", ""], false, 0);
-    var ship6 = new Ship("Destroyer", 2, ["", ""], false, 0);
+    var ship4 = new Ship("Battleship", 4, [], false, 0);
+    var ship5 = new Ship("Submarine", 3, [], false, 0);
+    var ship6 = new Ship("Destroyer", 2, [], false, 0);
 //check for a winner
   function checkForWin() {
  if (ship1.numHits + ship2.numHits + ship3.numHits === 9) {
@@ -51,13 +52,33 @@ class Ship {
 }
 //event listeners for eventual fire() function
 document.getElementById('board1')
-.addEventListener('click', handleClick);
+.addEventListener('click', fire);
 
 document.getElementById('board2')
-.addEventListener('click', handleClick);
-
-function handleClick(evt) {
+.addEventListener('click', fire);
+//attack function
+function fire(evt) {
     const marker = evt.target.getAttribute('id');
     console.log(marker);
+    if (board1[marker] === 0) {
+        console.log('miss');
+        evt.target.setAttribute('class', 'miss');
+    }
+    else if (board1[marker] === 1) {
+        console.log('hit!');
+        evt.target.setAttribute('class', 'hit');
+        
+    }
+    else if (board2[marker - 36]  === 0) {
+        console.log('miss');
+        evt.target.setAttribute('class', 'miss');
+    }
+    else if (board2[marker - 36]  === 1) {
+        console.log('hit!');
+        evt.target.setAttribute('class', 'hit');
+    }
+    
+
 
 }
+init();

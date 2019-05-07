@@ -104,13 +104,15 @@ h1 {
 }
 
 .hit {
-    background-image: url('https://cdn3.iconfinder.com/data/icons/war-6/512/b135_7-512.png')
-    background-width: 60px;
-    background-height: 60px;
+    background-image: url('../images/hit.png');
+    background-position: center;
+    background-size: 60px 60px;
 }
 
 .miss {
-    background-image: url('images/miss.png')
+    background-image: url('../images/miss.png');
+    background-position: center;
+    background-size: 60px 60px;
 }
 
 #msgEl {
