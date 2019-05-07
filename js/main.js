@@ -1,10 +1,17 @@
+//play function
+function play() {
+    document.getElementById('start').setAttribute('class', 'hidden');
+    document.getElementById('rules').setAttribute('class', 'hidden');
+    init();
+    placeShips1();
+}
 //initialize game boards
 function init() {
 board1 =    [0, 0, 0, 0, 0, 0,
-             0, 0, 0, 0, 1, 0,
-             0, 0, 1, 0, 1, 0,
-             0, 0, 1, 0, 1, 0,
-             0, 0, 1, 0, 0, 0,
+             0, 0, 0, 0, 0, 0,
+             0, 0, 0, 0, 0, 0,
+             0, 0, 0, 0, 0, 0,
+             0, 0, 0, 0, 0, 0,
              0, 0, 0, 0, 0, 0];
 
 board2 =    [0, 0, 0, 0, 0, 0,
@@ -21,64 +28,160 @@ board2 =    [0, 0, 0, 0, 0, 0,
 }
 //create ship class
 class Ship {
-    constructor(name, length, hitLocs, isSunk, numHits) {
+    constructor(name, shipLength, hitLocs, isSunk, numHits) {
         this.name = name;
-        this.length = length;
+        this.shipLength = shipLength;
         this.hitLocs = hitLocs;
         this.isSunk = isSunk;
         this.numHits = numHits;
     }
 }
 //create ships
-    var ship1 = new Ship("Battleship", 4, [], false, 0);
+    var ship1 = new Ship("Battleship", 4, [], false, 4);
     var ship2 = new Ship("Submarine", 3, [], false, 0);
     var ship3 = new Ship("Destroyer", 2, [], false, 0);
 
     var ship4 = new Ship("Battleship", 4, [], false, 0);
     var ship5 = new Ship("Submarine", 3, [], false, 0);
     var ship6 = new Ship("Destroyer", 2, [], false, 0);
-//check for a winner
+
+//place ships
+function placeShips1() {
+    document.getElementById('msgEl').textContent = "Player 1: Please place your ships on Player 2's board...Press the Battleship logo when finished.";
+    document.getElementById('ship1').setAttribute('class', '');
+    document.getElementById('ship2').setAttribute('class', '');
+    document.getElementById('ship3').setAttribute('class', '');
+    document.getElementById('title').addEventListener('click', placeShips2);
+}
+function placeShips2() {
+    document.getElementById('msgEl').textContent = "Player 2: Please place your ships on Player 1's board...Press the Battleship logo when finished.";
+//hide player1 ships
+document.getElementById('ship1').setAttribute('class', 'hideShips');
+document.getElementById('ship2').setAttribute('class', 'hideShips');
+document.getElementById('ship3').setAttribute('class', 'hideShips');
+//show player2 ships
+document.getElementById('ship4').setAttribute('class', '');
+document.getElementById('ship5').setAttribute('class', '');
+document.getElementById('ship6').setAttribute('class', '');
+document.getElementById('title').addEventListener('click', hideShips);
+
+}
+
+function hideShips() {
+
+    document.getElementById('ship4').setAttribute('class', 'hideShips');
+document.getElementById('ship5').setAttribute('class', 'hideShips');
+document.getElementById('ship6').setAttribute('class', 'hideShips');
+
+checkForWin();
+
+}
+//thinking submit button that will call player 2 place ships function?
+
+//is ship sunk? ICEBOX ITEM
+function isShipSunk() {
+    if (ship1.numHits === ship1.shipLength) {
+         Ship.ship1.isSunk = true;
+         document.getElementById('msgEl').textContent = "Sunk Player 1's battleship!";
+    }
+}
+
+let player1Hits = 0;
+let player2Hits = 0;
+let player1Misses = 0;
+let player2Misses = 0;
+
+ //check for a winner
   function checkForWin() {
- if (ship1.numHits + ship2.numHits + ship3.numHits === 9) {
+
+ 
+
+ if (player2Hits === 12) {
      document.getElementById('msgEl').textContent = 'Player 2 Wins!!!';
-     document.getElementById('msgEl').setAttribute('behavior', 'alternate');
+     
     console.log('Player 2 Wins!!!');
  }  
- else if (ship4.numHits + ship5.numHits + ship6.numHits === 9) {
+ else if (player1Hits === 12) {
      document.getElementById('msgEl').textContent = 'Player 1 Wins!!!';
-     document.getElementById('msgEl').setAttribute('behavior', 'alternate');
+     
     console.log('Player 1 Wins!!!');
 }  
+else if (turn === 1 && player1Hits != 12) {
+    document.getElementById('msgEl').textContent = "Player 1's Turn";
 }
-//event listeners for eventual fire() function
+else if (turn === -1 && player1Hits != 12) {
+    document.getElementById('msgEl').textContent = "Player 2's Turn";
+}
+}
+//event listeners for fire() function / game start & rules
 document.getElementById('board1')
 .addEventListener('click', fire);
 
 document.getElementById('board2')
 .addEventListener('click', fire);
+
+document.getElementById('start')
+.addEventListener('click', play);
+
+document.getElementById('rules')
+.addEventListener('click', rules);
+
+
+
 //attack function
 function fire(evt) {
     const marker = evt.target.getAttribute('id');
     console.log(marker);
+    turn *= -1;
     if (board1[marker] === 0) {
         console.log('miss');
         evt.target.setAttribute('class', 'miss');
+    
     }
-    else if (board1[marker] === 1) {
+   else if (board1[marker] === 1) {
         console.log('hit!');
         evt.target.setAttribute('class', 'hit');
-        
+        player1Hits += 1;
+
     }
     else if (board2[marker - 36]  === 0) {
         console.log('miss');
         evt.target.setAttribute('class', 'miss');
+    
     }
     else if (board2[marker - 36]  === 1) {
         console.log('hit!');
         evt.target.setAttribute('class', 'hit');
+        player2Hits += 1;
     }
     
+    checkForWin();
 
 
 }
-init();
+
+
+function allowDrop(ev) {
+    ev.preventDefault();
+  }
+  
+  function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+  }
+  
+  function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+
+    let startCell = parseInt(ev.target.id);
+    let shipLength = startCell + 4
+
+    for (let i = startCell; i < shipLength; i++) {
+        board1[i] = 1;
+    }
+  }
+
+  
+  //FIX DROP FUNCTION TO ONLY DROP ON CURRENT PLAYER BOARD (OPPOSING SIDE) & ONLY IN NON-OCCUPIED SPACES
+  //TURN FUNCTION TO ONLY ALLOW CURRENT PLAYER TO FIRE ONLY AT OPPONENTS BOARD

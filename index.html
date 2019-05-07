@@ -10,7 +10,7 @@
 </head>
 <body>
         <img id="title" src ="http://dpanoply.s3.amazonaws.com/blog/battleship-text-effect-using-layer-styles/21.jpg">
-    <section id ="board1">
+    <section id ="board1" ondrop="drop(event)" ondragover="allowDrop(event)">
         <div id="0"></div>
         <div id="1"></div>
         <div id="2"></div>
@@ -48,9 +48,10 @@
         <div id="34"></div>
         <div id="35"></div>
         <h2>Player 1</h2>
+        <br><br>
     </section>
 
-    <section id ="board2">
+    <section id ="board2" ondrop="drop(event)" ondragover="allowDrop(event)">
             <div id="36"></div>
             <div id="37"></div>
             <div id="38"></div>
@@ -89,8 +90,21 @@
             <div id="72"></div>
             <h2>Player 2</h2>
         </section>
-        <div class='start-btn'>RULES</div>
-        <div class='start-btn'>START</div>
-    <marquee behavior= "scroll" scrollamount="12" id = "msgEl">PRESS START TO PLAY</div>
+        <div id = "rules" class='startBtn'>RULES</div>
+        <div id ="start" class='startBtn'>START</div>
+    <span id = "msgEl">PRESS START TO PLAY</span>
+
+       
+<br>
+<section id = "shipyard1">
+<div class = "hideShips" id = "ship1" draggable="true" ondragstart="drag(event)"></div>
+<div class = "hideShips" id = "ship2" draggable="true" ondragstart="drag(event)"></div>
+<div class = "hideShips" id = "ship3" draggable="true" ondragstart="drag(event)"></div>
+</section>
+<section id = "shipyard2">
+<div class = "hideShips" id = "ship4" draggable="true" ondragstart="drag(event)"></div>
+<div class = "hideShips" id = "ship5" draggable="true" ondragstart="drag(event)"></div>
+<div class = "hideShips" id = "ship6" draggable="true" ondragstart="drag(event)"></div>
+</section>
 </body>
 </html>

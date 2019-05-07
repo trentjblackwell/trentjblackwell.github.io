@@ -7,7 +7,7 @@ section {
     display: grid;
     grid-template-columns: repeat(6, 60px);
     grid-template-rows: repeat(6, 60px);
-    grid-gap: 1vmin;
+    grid-gap: none;
     border: 1px lime;
     }
 
@@ -17,7 +17,6 @@ section {
 
     section div:hover {
         background-image: url("https://cdn0.iconfinder.com/data/icons/app-tab-bar-icons-for-iphone/60/My_location.png");
-        border: 2px dotted black;
         background-position: center;
         background-color: lime;
         cursor: crosshair;
@@ -25,10 +24,12 @@ section {
 
 #board2 {
     float: right;
+    
 }
 
 #board1 {
     float: left;
+    
 }
 
 h2 {
@@ -41,7 +42,7 @@ h1 {
 }
 
 #title {
-    margin-left: 90px;
+    margin-left: 120px;
     align: center;
     float: center;
     width: 300px;
@@ -55,7 +56,7 @@ h1 {
 
 }
 
-.start-btn{
+.startBtn{
     text-align: center;
     margin:5px;
     margin-left: 480px;
@@ -75,13 +76,13 @@ h1 {
     float: center;
 
 }
-.start-btn:active {
+.startBtn:active {
 	box-shadow: none;
 	position: relative;
 	top: .2em;
 }
 
-.start-btn:hover {
+.startBtn:hover {
     
     text-align: auto;
     margin:5px;
@@ -116,10 +117,151 @@ h1 {
 }
 
 #msgEl {
+    display: flex;
     align: center;
-    width: 474px;
-    font-size: 48px;
+    margin: auto;
+    width: auto;
+    font-size: 20px;
     color: white;
     background-image: url('https://atcmemes.com/wp-content/uploads/2016/12/radarimage-681x380.jpg')
     position: absolute bottom;
+}
+
+.hideShips {
+    background-color: transparent;
+    background-image: none;
+    display: none;
+}
+ 
+#ship1 {
+    background-image: url('../images/hit.png');
+    background-position: center;
+    background-size: fill;
+    background-repeat: no-repeat;
+    width: 238px;
+    height: 60px;
+    border: none;
+}
+
+#ship1:hover {
+    cursor: pointer;
+    background-color: greenyellow;
+}
+
+#ship2 {
+    background-image: url('../images/hit.png');
+    background-position: center;
+    background-size: fill;
+    background-repeat: no-repeat;
+    width: 238px;
+    height: 60px;
+    border: none;
+}
+
+#ship2:hover {
+    cursor: pointer;
+    background-color: greenyellow;
+}
+
+#ship3 {
+    background-image: url('../images/hit.png');
+    background-position: center;
+    background-size: fill;
+    background-repeat: no-repeat;
+    width: 238px;
+    height: 60px;
+    border: none;
+}
+
+#ship3:hover {
+    cursor: pointer;
+    background-color: greenyellow;
+}
+
+#ship4 {
+    background-image: url('../images/hit.png');
+    background-position: center;
+    background-size: fill;
+    background-repeat: no-repeat;
+    width: 238px;
+    height: 60px;
+    border: none;
+}
+
+#ship4:hover {
+    cursor: pointer;
+    background-color: greenyellow;
+}
+
+#ship5 {
+    background-image: url('../images/hit.png');
+    background-position: center;
+    background-size: fill;
+    background-repeat: no-repeat;
+    width: 238px;
+    height: 60px;
+    border: none;
+}
+
+#ship5:hover {
+    cursor: pointer;
+    background-color: greenyellow;
+}
+
+#ship6 {
+    background-image: url('../images/hit.png');
+    background-position: center;
+    background-size: fill;
+    background-repeat: no-repeat;
+    width: 238px;
+    height: 60px;
+    border: none;
+}
+
+#ship6:hover {
+    cursor: pointer;
+    background-color: greenyellow;
+}
+
+
+.hidden {
+    display: block;
+    color: transparent;
+    background-color: transparent;
+    text-align: center;
+    margin:5px;
+    margin-left: 480px;
+    margin-top: 50px;
+    font-weight: bold;
+    padding: 10px 10px 10px 10px ;
+    background-color: transparent;
+    text-shadow: -1px -1px transparent, 1px 1px transparent;    
+    -webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-o-border-radius: 7px;
+	border-radius: 7px; 
+    cursor: pointer;
+    display: block;
+    width: 300px;
+    float: center;
+
+}
+
+
+.unhidden {
+
+}
+
+#shipyard1 {
+    display: flex;
+    width: 100vw;
+    height: auto;
+    float: left;
+}
+
+#shipyard2 {
+    display: inline-flex;
+    width: 100vw;
+    height: auto;
+    float: right;
 }
