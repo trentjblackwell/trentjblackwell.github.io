@@ -47,10 +47,13 @@ h1 {
     float: center;
     width: 400px;
     height: auto;
+    cursor: pointer; 
 }
 
 #title img {
     position: top;
+    margin-top: 100px;
+    cursor: pointer;
 
 }
 

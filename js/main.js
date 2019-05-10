@@ -1,7 +1,6 @@
 //play function
 function play() {
     document.getElementById('start').setAttribute('class', 'hidden');
-    document.getElementById('rules').setAttribute('class', 'hidden');
     init();
     placeShips1();
 }
@@ -91,13 +90,17 @@ let player2Misses = 0;
 
  if (player2Hits === 12) {
      document.getElementById('msgEl').textContent = 'Player 2 Wins!!!';
-     
+     init();
     console.log('Player 2 Wins!!!');
+    document.getElementById('start').setAttribute('class', '');
+    document.getElementById('rules').setAttribute('class', '');
  }  
  else if (player1Hits === 12) {
      document.getElementById('msgEl').textContent = 'Player 1 Wins!!!';
-     
+     init();
     console.log('Player 1 Wins!!!');
+    document.getElementById('start').setAttribute('class', 'startBtn');
+    document.getElementById('rules').setAttribute('class', 'startBtn');
 }  
 
 }
