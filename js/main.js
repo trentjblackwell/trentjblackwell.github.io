@@ -47,14 +47,14 @@ class Ship {
 
 //place ships
 function placeShips1() {
-    document.getElementById('msgEl').textContent = "Player 1: Please place your ships on Player 2's board...Press the Battleship logo when finished.";
+    document.getElementById('msgEl').textContent = "Player 1: Please place your ships on Player 2's board...Press the Battleship logo when finished";
     document.getElementById('ship1').setAttribute('class', '');
     document.getElementById('ship2').setAttribute('class', '');
     document.getElementById('ship3').setAttribute('class', '');
     document.getElementById('title').addEventListener('click', placeShips2);
 }
 function placeShips2() {
-    document.getElementById('msgEl').textContent = "Player 2: Please place your ships on Player 1's board...Press the Battleship logo when finished.";
+    document.getElementById('msgEl').textContent = "Player 2: Please place your ships on Player 1's board...Press the Battleship logo when finished, and then Fire!";
 //hide player1 ships
 document.getElementById('ship1').setAttribute('class', 'hideShips');
 document.getElementById('ship2').setAttribute('class', 'hideShips');
@@ -76,15 +76,8 @@ document.getElementById('ship6').setAttribute('class', 'hideShips');
 checkForWin();
 
 }
-//thinking submit button that will call player 2 place ships function?
 
-//is ship sunk? ICEBOX ITEM
-function isShipSunk() {
-    if (ship1.numHits === ship1.shipLength) {
-         Ship.ship1.isSunk = true;
-         document.getElementById('msgEl').textContent = "Sunk Player 1's battleship!";
-    }
-}
+
 
 let player1Hits = 0;
 let player2Hits = 0;
@@ -106,12 +99,7 @@ let player2Misses = 0;
      
     console.log('Player 1 Wins!!!');
 }  
-else if (turn === 1 && player1Hits != 12) {
-    document.getElementById('msgEl').textContent = "Player 1's Turn";
-}
-else if (turn === -1 && player1Hits != 12) {
-    document.getElementById('msgEl').textContent = "Player 2's Turn";
-}
+
 }
 //event listeners for fire() function / game start & rules
 document.getElementById('board1')
@@ -128,6 +116,7 @@ document.getElementById('rules')
 
 
 
+
 //attack function
 function fire(evt) {
     const marker = evt.target.getAttribute('id');
@@ -136,23 +125,28 @@ function fire(evt) {
     if (board1[marker] === 0) {
         console.log('miss');
         evt.target.setAttribute('class', 'miss');
+        document.getElementById('msgEl').textContent = "Miss...";
     
     }
    else if (board1[marker] === 1) {
         console.log('hit!');
         evt.target.setAttribute('class', 'hit');
+        document.getElementById('msgEl').textContent = "Hit!"
         player1Hits += 1;
 
     }
     else if (board2[marker - 36]  === 0) {
         console.log('miss');
         evt.target.setAttribute('class', 'miss');
+        document.getElementById('msgEl').textContent = "Miss...";
     
     }
     else if (board2[marker - 36]  === 1) {
+        player2Hits += 1;
         console.log('hit!');
         evt.target.setAttribute('class', 'hit');
-        player2Hits += 1;
+        document.getElementById('msgEl').textContent = "Hit!"
+        
     }
     
     checkForWin();
@@ -185,3 +179,5 @@ function allowDrop(ev) {
   
   //FIX DROP FUNCTION TO ONLY DROP ON CURRENT PLAYER BOARD (OPPOSING SIDE) & ONLY IN NON-OCCUPIED SPACES
   //TURN FUNCTION TO ONLY ALLOW CURRENT PLAYER TO FIRE ONLY AT OPPONENTS BOARD
+  //FIX WIN LOGIC
+  //ICEBOX ITEMS
